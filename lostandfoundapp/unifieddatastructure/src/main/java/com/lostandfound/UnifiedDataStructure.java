@@ -5,4 +5,5 @@ package com.lostandfound;
  */
 public class UnifiedDataStructure {
     String name;
+    String cityName;
 }
