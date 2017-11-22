@@ -5,12 +5,15 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.lostandfound</groupId>
-    <artifactId>lost-and-found-app</artifactId>
+    <artifactId>lost-and-found</artifactId>
     <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
     <modules>
-        <module>unifieddatastructure</module>
-        <module>parserservice</module>
+        <module>service</module>
+        <module>parsers/parsercommon</module>
+        <module>parsers/item</module>
+        <module>parsers/parserinterface</module>
+        <module>parsers/parserwarsaw</module>
     </modules>
 
 
