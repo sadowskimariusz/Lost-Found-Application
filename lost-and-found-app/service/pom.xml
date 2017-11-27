@@ -15,9 +15,8 @@
     <dependencies>
         <dependency>
             <groupId>com.lostandfoundapp</groupId>
-            <artifactId>parsers</artifactId>
+            <artifactId>parser-warsaw</artifactId>
             <version>${project.version}</version>
-            <type>pom</type>
         </dependency>
         <dependency>
             <groupId>com.lostandfoundapp</groupId>

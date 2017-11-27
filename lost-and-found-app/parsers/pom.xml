@@ -19,22 +19,4 @@
         <module>parser-cracow</module>
     </modules>
 
-    <dependencies>
-        <dependency>
-            <groupId>com.lostandfoundapp</groupId>
-            <artifactId>parser-warsaw</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.lostandfoundapp</groupId>
-            <artifactId>parser-gdansk</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.lostandfoundapp</groupId>
-            <artifactId>parser-cracow</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-    </dependencies>
-
 </project>
