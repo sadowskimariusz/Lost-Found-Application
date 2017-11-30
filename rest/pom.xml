@@ -11,5 +11,13 @@
 
     <artifactId>rest</artifactId>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.lostandfoundapp</groupId>
+            <artifactId>service</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
+
 
 </project>
