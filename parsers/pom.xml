@@ -10,6 +10,14 @@
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>parsers</artifactId>
+    <packaging>pom</packaging>
+    <modules>
+        <module>item</module>
+        <module>common</module>
+        <module>warsaw</module>
+        <module>cracow</module>
+        <module>gdansk</module>
+    </modules>
 
 
 </project>
