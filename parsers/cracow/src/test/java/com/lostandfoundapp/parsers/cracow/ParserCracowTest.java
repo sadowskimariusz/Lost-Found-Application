@@ -12,6 +12,8 @@ public class ParserCracowTest {
 
         ParserCracow tester = new ParserCracow();
 
+        tester.addPdfName("testPDF.pdf");
+
         tester.parseData();
 
         Item expected = new Item();

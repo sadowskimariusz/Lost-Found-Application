@@ -16,8 +16,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.nio.channels.Channels;
 import java.nio.channels.ReadableByteChannel;
-import java.nio.file.Files;
-import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,10 +42,6 @@ public class ParserCracow implements Parser {
         doc = Jsoup.connect(html).get();
     }
 
-    private void connectToLocalFile(){
-
-    }
-
     private void getAllPDFs() throws IOException{
 
         Element body = doc.body();
@@ -72,7 +66,6 @@ public class ParserCracow implements Parser {
 
 
         }
-        System.out.print(PDFhref);
 
         int i=0;
         for(String PDF: PDFhref){
@@ -82,43 +75,40 @@ public class ParserCracow implements Parser {
             pdfNames.add("PDF nr" + Integer.toString(i)+".pdf");
             fos.getChannel().transferFrom(rbc, 0, Long.MAX_VALUE);
             i++;
+            fos.close();
         }
 
     }
 
     private void getDataFromPDFs() throws IOException{
 
-        int startLine;
-
         for(String a: pdfNames){
 
             PdfReader reader = new PdfReader(a);
 
-            for(int i = 1; i<reader.getNumberOfPages();i++){
-                if(i == 1 ){
-                    if(a.equals("PDF nr1.pdf")){
-                        startLine = 5;
-                    }else{
-                        startLine = 2;
-                    }
-                }else{
-                    startLine = 0;
-                }
-                getDataFromPage(i,reader,startLine);
+            for(int i = 1; i<reader.getNumberOfPages()+1;i++){
+
+                getDataFromPage(i,reader);
             }
         }
 
     }
 
-    private void getDataFromPage(int page, PdfReader reader, int startLine) throws IOException{
+    private void getDataFromPage(int page, PdfReader reader) throws IOException{
 
         String firstPageText = PdfTextExtractor.getTextFromPage(reader,page);
 
         String splitByLine[] = firstPageText.split("\n");
 
-        for(int j=startLine; j<splitByLine.length;j++){
+        for(int j=0; j<splitByLine.length;j++){
 
             String[] split = splitByLine[j].split(" ");
+
+            char isNumber = split[0].charAt(0);
+
+            if(isNumber < '0' || isNumber > '9' ){
+                continue;
+            }
 
             DataStructure temp = new DataStructure();
 
@@ -141,8 +131,6 @@ public class ParserCracow implements Parser {
             temp.clear();
         }
 
-
-
     }
 
     public List<DataStructure> getDataList() {
@@ -156,17 +144,14 @@ public class ParserCracow implements Parser {
     @Override
     public void parseData() {
         try {
-            if(source.equals("https://www.bip.krakow.pl/?dok_id=19964")) {
-                connectToPage(source);
-            }else{
-                connectToLocalFile();
+            connectToPage(source);
+            if(pdfNames.isEmpty()) {
+                getAllPDFs();
             }
-            getAllPDFs();
             getDataFromPDFs();
         }catch (IOException e){
             e.getStackTrace();
         }
-
     }
 
     @Override
