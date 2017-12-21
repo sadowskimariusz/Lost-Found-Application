@@ -4,6 +4,9 @@ package com.lostandfoundapp.parsers.cracow;
 import com.lostandfoundapp.parsers.item.Item;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 public class ParserCracowTest {
@@ -27,7 +30,12 @@ public class ParserCracowTest {
         expected.setURLAddressOfSource("https://www.bip.krakow.pl/?dok_id=19964");
         expected.setDateOfFinding("13-12-2016");
 
-        Item actual = tester.getParsedData().iterator().next();
+        List<Item> actualList = tester.getParsedData();
+
+
+        assertEquals(799, actualList.size());
+
+        Item actual = actualList.iterator().next();
 
         assertEquals(expected.getNameOfItem(), actual.getNameOfItem());
         assertEquals(expected.getItemID(), actual.getItemID());
@@ -40,4 +48,3 @@ public class ParserCracowTest {
 
     }
 }
-

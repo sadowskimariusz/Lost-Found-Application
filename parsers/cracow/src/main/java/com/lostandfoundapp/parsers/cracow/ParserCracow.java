@@ -10,7 +10,6 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
@@ -46,7 +45,7 @@ public class ParserCracow implements Parser {
 
         Element body = doc.body();
 
-        //Find all link form the parsercracow.main site
+        //Find all link form the parsercracow main site
         Elements elements = body.select("#mainDiv ul a[href]");
         List<String> href = new ArrayList<String>();
 
@@ -144,8 +143,8 @@ public class ParserCracow implements Parser {
     @Override
     public void parseData() {
         try {
-            connectToPage(source);
             if(pdfNames.isEmpty()) {
+                connectToPage(source);
                 getAllPDFs();
             }
             getDataFromPDFs();

@@ -4,6 +4,9 @@ import com.lostandfoundapp.parsers.item.Item;
 import org.junit.Test;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Iterator;
+import java.util.List;
+import java.util.ListIterator;
 
 import static org.junit.Assert.*;
 
@@ -27,17 +30,24 @@ public class ParserGdanskTest {
         expected.setItemSourceID("");
         expected.setDateOfFinding("20.11.2017");
 
-        Item actual = tester.getParsedData().iterator().next();
+        List<Item> actualList = tester.getParsedData();
 
-        assertEquals(expected.getURLAddressOfSource(),actual.getURLAddressOfSource());
-        assertEquals(expected.getCityOfFound(),actual.getCityOfFound());
-        assertEquals(expected.getItemID(), actual.getItemID());
-        assertEquals(expected.getNameOfItem(), actual.getNameOfItem());
-        assertEquals(expected.getPlaceOfFound(), actual.getPlaceOfFound());
-        assertEquals(expected.getComment(), actual.getComment());
-        assertEquals(expected.getItemSourceID(), actual.getItemSourceID());
-        assertEquals(expected.getDateOfFinding(), actual.getDateOfFinding());
+        Iterator<Item> actualListIterator = actualList.iterator();
 
+        assertEquals(2, actualList.size());
 
+        while(actualListIterator.hasNext()){
+
+            Item actual = actualListIterator.next();
+
+            assertEquals(expected.getURLAddressOfSource(),actual.getURLAddressOfSource());
+            assertEquals(expected.getCityOfFound(),actual.getCityOfFound());
+            assertEquals(expected.getItemID(), actual.getItemID());
+            assertEquals(expected.getNameOfItem(), actual.getNameOfItem());
+            assertEquals(expected.getPlaceOfFound(), actual.getPlaceOfFound());
+            assertEquals(expected.getComment(), actual.getComment());
+            assertEquals(expected.getItemSourceID(), actual.getItemSourceID());
+            assertEquals(expected.getDateOfFinding(), actual.getDateOfFinding());
+        }
     }
 }
