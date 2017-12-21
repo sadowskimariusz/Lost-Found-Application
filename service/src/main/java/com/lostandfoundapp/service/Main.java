@@ -1,10 +1,13 @@
 package com.lostandfoundapp.service;
 
-/**
- * Created by Mariachi on 30.11.2017.
- */
+import com.lostandfoundapp.parsers.warsaw.ParserWarsaw;
+
+import java.io.IOException;
+
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+
         System.out.println("hello");
+        ParserWarsaw parserWarsaw = new ParserWarsaw();
     }
 }
