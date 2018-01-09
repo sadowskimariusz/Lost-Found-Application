@@ -1,4 +1,12 @@
-create table item (
-  col int not null
 
-);
+CREATE TABLE `LOST_FOUND_APP`.`LOST_ITEM ` (
+  `NO` int(11) NOT NULL,
+  `NAME_OF_ITEM` varchar(45) DEFAULT NULL,
+  `CITY_OF_FOUND` varchar(45) DEFAULT NULL,
+  `PLACE_OF_FOUND` varchar(45) DEFAULT NULL,
+  `COMMENT` varchar(45) DEFAULT NULL,
+  `ITEM_SOURCE_ID` varchar(45) DEFAULT NULL,
+  `URL_ADDRESS_OF_SOURCE` varchar(45) DEFAULT NULL,
+  `DATE_OF_FOUND` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`NO`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

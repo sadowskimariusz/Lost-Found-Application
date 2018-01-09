@@ -79,7 +79,7 @@ public class ParserWarsaw implements Parser {
     private void generateXlsFiles() throws IOException {
         int i = 0;
         for (String URLDownloadAddress : URLDownloadAddresses) {
-            XLSFilesNames.add("parsers\\warsaw\\lost_things_" + i + ".xls");
+            XLSFilesNames.add("lost_things_" + i + ".xls");
             FileUtils.copyURLToFile(new URL(URLDownloadAddress), new File(XLSFilesNames.get(i)));
             ++i;
         }
