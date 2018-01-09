@@ -1,0 +1,53 @@
+package com.lostandfoundapp.service;
+
+import com.lostandfoundapp.parsers.common.Parser;
+import com.lostandfoundapp.parsers.cracow.ParserCracow;
+import com.lostandfoundapp.parsers.gdansk.ParserGdansk;
+import com.lostandfoundapp.parsers.warsaw.ParserWarsaw;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import static org.junit.Assert.*;
+
+@RunWith(MockitoJUnitRunner.class)
+public class ServiceTest {
+
+    @InjectMocks
+    Service service;
+
+    @Mock
+    ParserCracow cracow;
+
+    @Mock
+    ParserGdansk gdansk;
+
+    @Mock
+    ParserWarsaw warsaw;
+
+    @Before
+    public void setUp() throws Exception {
+
+        List<Parser> parsers = new ArrayList<>();
+
+        parsers.add(cracow);
+        parsers.add(gdansk);
+        parsers.add(warsaw);
+
+
+        service = new Service(parsers);
+    }
+
+    @Test
+    public void downloadData() throws Exception {
+        service.downloadData();
+
+    }
+
+}

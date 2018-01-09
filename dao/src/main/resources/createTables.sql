@@ -1,4 +1,5 @@
 
+<<<<<<< Updated upstream
 CREATE TABLE `LOST_FOUND_APP`.`LOST_ITEM ` (
   `NO` int(11) NOT NULL,
   `NAME_OF_ITEM` varchar(45) DEFAULT NULL,
@@ -10,3 +11,6 @@ CREATE TABLE `LOST_FOUND_APP`.`LOST_ITEM ` (
   `DATE_OF_FOUND` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`NO`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+=======
+);
+>>>>>>> Stashed changes

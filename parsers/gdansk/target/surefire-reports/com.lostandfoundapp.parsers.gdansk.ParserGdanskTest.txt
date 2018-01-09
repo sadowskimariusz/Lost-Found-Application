@@ -1,4 +1,8 @@
 -------------------------------------------------------------------------------
 Test set: com.lostandfoundapp.parsers.gdansk.ParserGdanskTest
 -------------------------------------------------------------------------------
+<<<<<<< Updated upstream
 Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.242 sec
+=======
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.272 sec
+>>>>>>> Stashed changes
