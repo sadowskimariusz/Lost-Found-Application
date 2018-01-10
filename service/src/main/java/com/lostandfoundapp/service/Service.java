@@ -20,7 +20,6 @@ public class Service {
 
         this.parsers = parsers;
         items = new ArrayList<>();
-
     }
 
     public void downloadData(){

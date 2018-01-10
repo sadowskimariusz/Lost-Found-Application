@@ -16,7 +16,7 @@ public class main {
 
             Service service;
 
-           // ParserWarsaw warsaw = new ParserWarsaw();
+            ParserWarsaw warsaw = new ParserWarsaw();
             ParserGdansk gdansk = new ParserGdansk();
             ParserCracow cracow = new ParserCracow();
 
@@ -24,7 +24,7 @@ public class main {
 
             parsers.add(cracow);
             parsers.add(gdansk);
-            //parsers.add(warsaw);
+            parsers.add(warsaw);
 
 
             service = new Service(parsers);

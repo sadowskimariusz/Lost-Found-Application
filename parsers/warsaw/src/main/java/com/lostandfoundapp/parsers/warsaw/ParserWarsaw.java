@@ -47,7 +47,7 @@ public class ParserWarsaw implements Parser {
         dataStructureList = new ArrayList<>();
         URLsourceAddress = "https://bip.warszawa.pl/Menu_przedmiotowe/ogloszenia/rzeczy_znalezione";
         URLDownloadAddresses = new ArrayList<>();
-        document = Jsoup.parse( new File("html_file_TEST.html"), "UTF-8");
+        //document = Jsoup.parse( new File("html_file_TEST.html"), "UTF-8");
 
 
 //        connectToHTMLPage(URLsourceAddress);
@@ -55,6 +55,10 @@ public class ParserWarsaw implements Parser {
 //        generateXlsFiles();
 //        getDataFromAllXlsFiles(XLSFilesNames);
 
+    }
+
+    public void useDocumentForTests() throws IOException {
+        document = Jsoup.parse( new File("html_file_TEST.html"), "UTF-8");
     }
 
     private void connectToHTMLPage(String URLaddress) throws IOException {
@@ -73,7 +77,7 @@ public class ParserWarsaw implements Parser {
         for (Element element : elements) {
             URLDownloadAddresses.add(element.attr("abs:href"));
         }
-        System.out.println(URLDownloadAddresses);
+        //System.out.println(URLDownloadAddresses);
     }
 
     private void generateXlsFiles() throws IOException {
@@ -100,11 +104,13 @@ public class ParserWarsaw implements Parser {
 
                 DataStructure temp = new DataStructure();
 
+
                 Row currentRow = iterator.next();
                 Iterator<Cell> cellIterator = currentRow.iterator();
                 Cell currentCell = cellIterator.next();
                 temp.setItemID(currentCell.getStringCellValue());
 
+                if(!cellIterator.hasNext()) break;
                 currentCell = cellIterator.next();
                 DataFormatter df = new DataFormatter();
                 String value = df.formatCellValue(currentCell);
@@ -123,10 +129,10 @@ public class ParserWarsaw implements Parser {
                 dataStructureList.add(temp);
             }
 
-//            for (DataStructure dataStructure : dataStructureList) {
-//                dataStructure.printOnConsole();
-//            }
-
+         /*   for (DataStructure dataStructure : dataStructureList) {
+                dataStructure.printOnConsole();
+            }
+*/
             workbook.close();
             fis.close();
         }
@@ -142,7 +148,6 @@ public class ParserWarsaw implements Parser {
                 generateXlsFiles();
                 getDataFromAllXlsFiles(XLSFilesNames);
             }
-            getDataFromAllXlsFiles(XLSFilesNames);
         } catch (IOException e) {
             e.printStackTrace();
         }

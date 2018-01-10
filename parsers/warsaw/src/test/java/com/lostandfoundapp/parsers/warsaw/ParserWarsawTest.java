@@ -16,6 +16,7 @@ public class ParserWarsawTest {
     public void getParsedData() throws IOException {
 
         ParserWarsaw tester = new ParserWarsaw();
+        tester.useDocumentForTests();
         tester.getUrlDownloadAddresses();
 
         List<String> ExpectedUrlDownloadAddressList = new ArrayList<>();
