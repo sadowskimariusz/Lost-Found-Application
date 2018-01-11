@@ -13,7 +13,7 @@ public class DAOmain implements OperationsWithDAO {
             "CREATE SCHEMA  LOST_FOUND_APP ;\n" +
             "\n" +
             "CREATE TABLE LOST_FOUND_APP.LOST_ITEM  (\n" +
-            "  NO int(11) NOT NULL,\n" +
+            "  LOST_ITEM_ID int(11) NOT NULL,\n" +
             "  NAME_OF_ITEM varchar(45) DEFAULT NULL,\n" +
             "  CITY_OF_FOUND varchar(45) DEFAULT NULL,\n" +
             "  PLACE_OF_FOUND varchar(45) DEFAULT NULL,\n" +
@@ -21,7 +21,7 @@ public class DAOmain implements OperationsWithDAO {
             "  ITEM_SOURCE_ID varchar(45) DEFAULT NULL,\n" +
             "  URL_ADDRESS_OF_SOURCE varchar(45) DEFAULT NULL,\n" +
             "  DATE_OF_FOUND varchar(45) DEFAULT NULL,\n" +
-            "  PRIMARY KEY (`NO`)\n" +
+            "  PRIMARY KEY (LOST_ITEM_ID)\n" +
             ") ENGINE=InnoDB DEFAULT CHARSET=utf8;\n";
 
     // JDBC driver name and database URL
@@ -103,7 +103,7 @@ public class DAOmain implements OperationsWithDAO {
         PreparedStatement preparedStatement = null;
 
         String insertTableSQL = "INSERT INTO LOST_FOUND_APP.LOST_ITEM"
-                + "(NO, NAME_OF_ITEM, CITY_OF_FOUND, PLACE_OF_FOUND, COMMENT, ITEM_SOURCE_ID, URL_ADDRESS_OF_SOURCE, DATE_OF_FOUND) VALUES"
+                + "(LOST_ITEM_ID, NAME_OF_ITEM, CITY_OF_FOUND, PLACE_OF_FOUND, COMMENT, ITEM_SOURCE_ID, URL_ADDRESS_OF_SOURCE, DATE_OF_FOUND) VALUES"
                 + "(?,?,?,?,?,?,?,?)";
 
         preparedStatement = conn.prepareStatement(insertTableSQL);
