@@ -1,9 +1,11 @@
 package com.lostandfoundapp.service;
 
+import com.lostandfoundapp.dao.LostItemDAOimpl;
 import com.lostandfoundapp.parsers.item.Item;
 import com.lostandfoundapp.parsers.common.Parser;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -11,6 +13,10 @@ import java.util.List;
 public class Service {
 
     private List<Parser> parsers;
+
+    private LostItemDAOimpl dao;
+
+    ItemConverter converter;
 
     public List<Item> getItems() {
         return items;
@@ -24,14 +30,19 @@ public class Service {
         items = new ArrayList<>();
     }
 
-    public void downloadData(){
+    public void downloadData() throws SQLException, ClassNotFoundException {
 
         Iterator<Parser> parserIterator = parsers.iterator();
+
+        dao = new LostItemDAOimpl();
+        converter = new ItemConverter();
 
         while(parserIterator.hasNext()){
             Parser currentParser = parserIterator.next();
             currentParser.parseData();
-            items.addAll(currentParser.getParsedData());
+
+
+            dao.insertListOfLostItem( converter.convertItemToLostItem(currentParser.getParsedData()));
         }
     }
 

@@ -5,8 +5,9 @@ import com.lostandfoundapp.dao.lostitemoperations.LostItemDAO;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.List;
 
-public class JdbcLostItemDAO implements LostItemDAO {
+public class LostItemDAOimpl implements LostItemDAO {
 
     // JDBC driver name and database URL
     final String JDBC_DRIVER = "org.h2.Driver";
@@ -34,6 +35,7 @@ public class JdbcLostItemDAO implements LostItemDAO {
 
         try {
             dbConnection = getDBConnection();
+            if (dbConnection == null) System.out.println("dbConnection jest nullem");
             statement = dbConnection.createStatement();
 
             System.out.println(deleteAllRowsSQL);
@@ -56,7 +58,7 @@ public class JdbcLostItemDAO implements LostItemDAO {
     }
 
     @Override
-    public void insertListOfLostItem(ArrayList<LostItem> lostItemList) throws ClassNotFoundException, SQLException {
+    public void insertListOfLostItem(List<LostItem> lostItemList) throws ClassNotFoundException, SQLException {
 
         deleteListOfLostItem();
 
