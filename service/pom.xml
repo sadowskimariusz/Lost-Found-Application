@@ -11,7 +11,8 @@
 
     <artifactId>service</artifactId>
 
-    <depedencyMaganger>
+    <dependencyManagement>
+        <dependencies>
         <dependency>
             <groupId>org.glassfish.jersey</groupId>
             <artifactId>jersey-bom</artifactId>
@@ -19,9 +20,15 @@
             <type>pom</type>
             <scope>import</scope>
         </dependency>
-    </depedencyMaganger>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
+
+        <dependency>
+            <groupId>org.glassfish.jersey.containers</groupId>
+            <artifactId>jersey-container-grizzly2-http</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>com.lostandfoundapp</groupId>
@@ -38,17 +45,11 @@
             <artifactId>cracow</artifactId>
             <version>${project.version}</version>
         </dependency>
-
         <dependency>
             <groupId>com.lostandfoundapp</groupId>
             <artifactId>gdansk</artifactId>
             <version>${project.version}</version>
         </dependency>
-
-            <dependency>
-                <groupId>org.glassfish.jersey.containers</groupId>
-                <artifactId>jersey-container-grizzly2-http</artifactId>
-            </dependency>
 
     </dependencies>
 

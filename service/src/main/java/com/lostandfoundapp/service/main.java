@@ -16,14 +16,9 @@ public class main {
 
             Service service;
 
-<<<<<<< Updated upstream
             ParserWarsaw warsaw = new ParserWarsaw();
             ParserGdansk gdansk = new ParserGdansk();
-=======
-            //ParserWarsaw warsaw = new ParserWarsaw();
->>>>>>> Stashed changes
             ParserCracow cracow = new ParserCracow();
-            ParserGdansk gdansk = new ParserGdansk();
 
             List<Parser> parsers = new ArrayList<>();
 
