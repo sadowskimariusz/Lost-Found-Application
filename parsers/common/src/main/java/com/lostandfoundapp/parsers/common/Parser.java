@@ -9,4 +9,5 @@ public interface Parser {
     List<Item> getParsedData();
     void parseData();
 
+
 }

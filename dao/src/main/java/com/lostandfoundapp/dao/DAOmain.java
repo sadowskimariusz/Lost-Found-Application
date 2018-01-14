@@ -2,10 +2,12 @@ package com.lostandfoundapp.dao;
 
 import com.lostandfoundapp.dao.lostitem.LostItemDAO;
 import com.lostandfoundapp.dao.lostitemoperations.OperationsWithDAO;
+import org.springframework.stereotype.Component;
 
 import java.sql.*;
 import java.util.ArrayList;
 
+@Component
 public class DAOmain implements OperationsWithDAO {
 
     private String deleteAndCreateSchemaSQL = "DROP SCHEMA  [ IF EXISTS ] LOST_FOUND_APP; \n" +

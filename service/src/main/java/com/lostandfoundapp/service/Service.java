@@ -3,18 +3,20 @@ package com.lostandfoundapp.service;
 import com.lostandfoundapp.parsers.item.Item;
 import com.lostandfoundapp.parsers.common.Parser;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
-import javax.ws.rs.core.MediaType;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-@Path("/service")
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
 public class Service {
 
+    @Autowired
     private List<Parser> parsers;
 
     public List<Item> getItems() {
@@ -30,15 +32,7 @@ public class Service {
 
     }
 
-    public void createFakeItemList(){
-        List<Item> fakeList = new ArrayList<>();
-        Item fake = new Item();
-        fakeList.add(fake);
-
-        items=fakeList;
-
-    }
-
+    @Scheduled(cron = "* */10 * * * *")
     public void downloadData(){
 
         Iterator<Parser> parserIterator = parsers.iterator();
@@ -50,23 +44,11 @@ public class Service {
         }
     }
 
-    @GET
-    @Path("/items")
-    @Produces(MediaType.TEXT_PLAIN)
-    public String getAllItems(){
+    @RequestMapping("/")
+    public int getAllItems(){
 
-        if(items.isEmpty()){
+        return items.size();
 
-            return "Nothing to show";
-        }else{
-            return "I work!";
-        }
-        /*
-        return "---Item List---\n"
-                + items.stream()
-                .map(c -> c.toString())
-                .collect(Collectors.joining("\n"));
-*/
     }
 
 

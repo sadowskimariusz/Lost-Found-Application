@@ -21,7 +21,9 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.io.FileUtils;
+import org.springframework.stereotype.Component;
 
+@Component
 public class ParserWarsaw implements Parser {
 
     private Document document;
@@ -34,8 +36,6 @@ public class ParserWarsaw implements Parser {
     public List<String> getURLDownloadAddresses() {
         return URLDownloadAddresses;
     }
-
-
 
     public List<DataStructure> getDataStructureList() {
         return dataStructureList;
