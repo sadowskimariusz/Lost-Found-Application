@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface LostItemDAO {
      ArrayList<LostItem> getListOfLostItem() throws ClassNotFoundException, SQLException;
-     void deleteListOfLostItem() throws SQLException;
-     void insertListOfLostItem(List<LostItem> listOfItems) throws ClassNotFoundException, SQLException;
+     void deleteListOfLostItem();
+     void insertListOfLostItem(List<LostItem> listOfItems);
 
 }

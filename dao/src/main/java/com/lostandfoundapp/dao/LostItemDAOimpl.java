@@ -2,11 +2,13 @@ package com.lostandfoundapp.dao;
 
 import com.lostandfoundapp.dao.lostitem.LostItem;
 import com.lostandfoundapp.dao.lostitemoperations.LostItemDAO;
+import org.springframework.stereotype.Component;
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class LostItemDAOimpl implements LostItemDAO {
 
     // JDBC driver name and database URL
@@ -20,22 +22,24 @@ public class LostItemDAOimpl implements LostItemDAO {
 
 
     @Override
-    public ArrayList<LostItem> getListOfLostItem() throws ClassNotFoundException, SQLException {
+    public ArrayList<LostItem> getListOfLostItem() {
         ArrayList<LostItem> listOfLostItem;
 
         return null;
     }
 
     @Override
-    public void deleteListOfLostItem() throws SQLException {
+    public void deleteListOfLostItem(){
         Connection dbConnection = null;
         Statement statement = null;
 
-        String deleteAllRowsSQL = "DELETE * FROM LOST_FOUND_APP.LOST_ITEM;";
+        String deleteAllRowsSQL = "DELETE FROM LOST_FOUND_APP.LOST_ITEM;";
 
         try {
+
+
             dbConnection = getDBConnection();
-            if (dbConnection == null) System.out.println("dbConnection jest nullem");
+
             statement = dbConnection.createStatement();
 
             System.out.println(deleteAllRowsSQL);
@@ -46,27 +50,35 @@ public class LostItemDAOimpl implements LostItemDAO {
             System.out.println("Record is inserted into DBUSER table!");
 
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            throw new DatabaseException(e);
         } finally {
             if (statement != null) {
-                statement.close();
+                try {
+                    statement.close();
+                } catch (SQLException e) {
+                    throw new DatabaseException(e);
+                }
             }
             if (dbConnection != null) {
-                dbConnection.close();
+                try {
+                    dbConnection.close();
+                } catch (SQLException e) {
+                    throw new DatabaseException(e);
+                }
             }
         }
     }
 
     @Override
-    public void insertListOfLostItem(List<LostItem> lostItemList) throws ClassNotFoundException, SQLException {
+    public void insertListOfLostItem(List<LostItem> lostItemList) {
 
-        deleteListOfLostItem();
+        //deleteListOfLostItem();
 
         Connection dbConnection = null;
         PreparedStatement preparedStatement = null;
 
         String insertTableSQL = "INSERT INTO LOST_FOUND_APP.LOST_ITEM"
-                + "(NAME_OF_ITEM, CITY_OF_FOUND, PLACE_OF_FOUND, COMMENT, ITEM_SOURCE_ID, URL_ADDRESS_OF_SOURCE, DATE_OF_FOUND) VALUES"
+                + "(NAME_OF_ITEM, CITY_OF_FOUND, PLACE_OF_FOUND, COMMENT, ITEM_SOURCE_ID, URL_ADDRESS_OF_SOURCE, DATE_OF_FOUND) VALUES "
                 + "(?,?,?,?,?,?,?)";
 
         try {
@@ -86,18 +98,27 @@ public class LostItemDAOimpl implements LostItemDAO {
                 preparedStatement.setString(6, lostItem.getURLAddressOfSource());
                 preparedStatement.setString(7, lostItem.getDateOfFinding());
 
-                preparedStatement.executeUpdate(insertTableSQL);
+                preparedStatement.executeUpdate();
                 System.out.println("Record is inserted into DBUSER table!");
+                //break;
             }
 
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            throw new DatabaseException(e);
         } finally {
             if (preparedStatement != null) {
-                preparedStatement.close();
+                try {
+                    preparedStatement.close();
+                } catch (SQLException e) {
+//                    throw new DatabaseException(e);
+                }
             }
             if (dbConnection != null) {
-                dbConnection.close();
+                try {
+                    dbConnection.close();
+                } catch (SQLException e) {
+//                    throw new DatabaseException(e);
+                }
             }
         }
     }
@@ -111,15 +132,14 @@ public class LostItemDAOimpl implements LostItemDAO {
             // STEP 1: Register JDBC driver
             Class.forName(JDBC_DRIVER);
         } catch (ClassNotFoundException e) {
-            System.out.println(e.getMessage());
+            throw new DatabaseException(e);
         }
         try {
             //STEP 2: Open a connection
             System.out.println("Connecting to database...");
             dbConnection = DriverManager.getConnection(DB_URL,USER,PASS);
-            return dbConnection;
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            throw new DatabaseException(e);
         }
         return dbConnection;
     }

@@ -23,6 +23,7 @@ public class main {
 
             List<Parser> parsers = new ArrayList<>();
 
+
             parsers.add(cracow);
             parsers.add(gdansk);
             parsers.add(warsaw);
