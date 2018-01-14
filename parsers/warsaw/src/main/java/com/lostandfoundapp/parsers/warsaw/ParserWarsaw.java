@@ -129,10 +129,10 @@ public class ParserWarsaw implements Parser {
                 dataStructureList.add(temp);
             }
 
-         /*   for (DataStructure dataStructure : dataStructureList) {
+          /* for (DataStructure dataStructure : dataStructureList) {
                 dataStructure.printOnConsole();
-            }
-*/
+            }*/
+
             workbook.close();
             fis.close();
         }
@@ -172,6 +172,8 @@ public class ParserWarsaw implements Parser {
 
             itemList.add(new Item(temp));
         }
+
+        //System.out.println(itemList.size());
         return itemList;
     }
 }
