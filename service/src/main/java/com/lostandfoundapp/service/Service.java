@@ -28,7 +28,7 @@ public class Service {
 
     public List<Item> getItems() {
 
-        return items;
+        return items; //here is mistake
     }
 
 
