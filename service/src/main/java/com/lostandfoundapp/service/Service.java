@@ -28,6 +28,9 @@ public class Service {
     @Autowired
     ItemConverter converter;
 
+    @Autowired
+    ParserGdansk temp;
+
     public Service(List<Parser> parsers)throws IOException{
 
         this.parsers = parsers;
@@ -39,7 +42,6 @@ public class Service {
 
         Iterator<Parser> parserIterator = parsers.iterator();
 
-        /*
         dao.deleteListOfLostItem();
 
         while(parserIterator.hasNext()){
@@ -48,21 +50,19 @@ public class Service {
 
             dao.insertListOfLostItem( converter.convertItemToLostItem(currentParser.getParsedData()));
         }
-        */
+
     }
 
-    @RequestMapping("/")
+    @RequestMapping("/przyklad")
     public String getAllItems() throws SQLException, ClassNotFoundException{
 
-        //List<LostItem> daoItemList = dao.getListOfLostItem();
+        List<LostItem> daoItemList = dao.getListOfLostItem();
 
         String finalMessage = "";
 
-        ParserGdansk parser = new ParserGdansk();
+        temp.parseData();
 
-        parser.parseData();
-
-        List<Item> itemList = parser.getParsedData();
+        List<Item> itemList = temp.getParsedData();
 
         Iterator<Item> itemIterator = itemList.iterator();
 
