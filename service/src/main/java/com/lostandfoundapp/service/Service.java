@@ -1,25 +1,20 @@
 package com.lostandfoundapp.service;
 
-import com.lostandfoundapp.dao.LostItemDAOimpl;
 import com.lostandfoundapp.dao.lostitem.LostItem;
 import com.lostandfoundapp.dao.lostitemoperations.LostItemDAO;
-import com.lostandfoundapp.parsers.item.Item;
 import com.lostandfoundapp.parsers.common.Parser;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
-
-import javax.annotation.PostConstruct;
-import java.io.IOException;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
+import com.lostandfoundapp.parsers.gdansk.ParserGdansk;
+import com.lostandfoundapp.parsers.item.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.PostConstruct;
+import java.io.IOException;
+import java.sql.SQLException;
+import java.util.Iterator;
+import java.util.List;
 
 @RestController
 public class Service {
@@ -44,9 +39,7 @@ public class Service {
 
         Iterator<Parser> parserIterator = parsers.iterator();
 
-        //dao = new LostItemDAOimpl();
-        //converter = new ItemConverter();
-
+        /*
         dao.deleteListOfLostItem();
 
         while(parserIterator.hasNext()){
@@ -55,21 +48,29 @@ public class Service {
 
             dao.insertListOfLostItem( converter.convertItemToLostItem(currentParser.getParsedData()));
         }
+        */
     }
 
     @RequestMapping("/")
     public String getAllItems() throws SQLException, ClassNotFoundException{
 
-        List<LostItem> daoItemList = dao.getListOfLostItem();
+        //List<LostItem> daoItemList = dao.getListOfLostItem();
 
         String finalMessage = "";
 
-        Iterator<LostItem> itemIterator = daoItemList.iterator();
+        ParserGdansk parser = new ParserGdansk();
+
+        parser.parseData();
+
+        List<Item> itemList = parser.getParsedData();
+
+        Iterator<Item> itemIterator = itemList.iterator();
 
         finalMessage += "   City    |   Date    |   Name    |   Place of finding \n";
 
         while(itemIterator.hasNext()){
-            LostItem current = itemIterator.next();
+
+            Item current = itemIterator.next();
 
             finalMessage += current.getCityOfFound() + " ";
             finalMessage += current.getDateOfFinding() + " ";

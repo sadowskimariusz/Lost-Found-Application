@@ -4,10 +4,9 @@ package com.lostandfoundapp.parsers.cracow;
 import com.lostandfoundapp.parsers.item.Item;
 import org.junit.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class ParserCracowTest {
     @Test

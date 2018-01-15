@@ -1,7 +1,8 @@
 package com.lostandfoundapp.parsers.warsaw;
 
-import com.lostandfoundapp.parsers.item.Item;
 import com.lostandfoundapp.parsers.common.Parser;
+import com.lostandfoundapp.parsers.item.Item;
+import org.apache.commons.io.FileUtils;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
@@ -11,17 +12,15 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
+import org.springframework.stereotype.Component;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-
-import org.apache.commons.io.FileUtils;
-import org.springframework.stereotype.Component;
 
 @Component
 public class ParserWarsaw implements Parser {

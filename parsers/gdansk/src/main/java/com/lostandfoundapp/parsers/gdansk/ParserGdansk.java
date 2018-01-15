@@ -1,8 +1,8 @@
 package com.lostandfoundapp.parsers.gdansk;
 
 
-import com.lostandfoundapp.parsers.item.Item;
 import com.lostandfoundapp.parsers.common.Parser;
+import com.lostandfoundapp.parsers.item.Item;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;

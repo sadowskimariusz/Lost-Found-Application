@@ -3,12 +3,10 @@ package com.lostandfoundapp.parsers.gdansk;
 import com.lostandfoundapp.parsers.item.Item;
 import org.junit.Test;
 
-import java.nio.charset.StandardCharsets;
 import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class ParserGdanskTest {
 
