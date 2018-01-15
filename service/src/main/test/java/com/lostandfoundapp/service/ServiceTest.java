@@ -1,5 +1,6 @@
 package com.lostandfoundapp.service;
 
+import com.lostandfoundapp.dao.lostitemoperations.LostItemDAO;
 import com.lostandfoundapp.parsers.common.Parser;
 import com.lostandfoundapp.parsers.cracow.ParserCracow;
 import com.lostandfoundapp.parsers.gdansk.ParserGdansk;
@@ -58,7 +59,7 @@ public class ServiceTest {
 
     @Test
     public void downloadDataSizeTest() throws Exception {
-        assertEquals(3, service.getItems().size());
+        assertEquals(3, service.getAllItems());
     }
 
 }

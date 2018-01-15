@@ -1,6 +1,7 @@
 package com.lostandfoundapp.service;
 
 import com.lostandfoundapp.dao.LostItemDAOimpl;
+import com.lostandfoundapp.dao.lostitem.LostItem;
 import com.lostandfoundapp.dao.lostitemoperations.LostItemDAO;
 import com.lostandfoundapp.parsers.item.Item;
 import com.lostandfoundapp.parsers.common.Parser;
@@ -29,31 +30,25 @@ public class Service {
     @Autowired
     private LostItemDAO dao;
 
+    @Autowired
     ItemConverter converter;
-
-    public List<Item> getItems() {
-
-        return items; //here is mistake dsdaddas
-    }
-
 
     public Service(List<Parser> parsers)throws IOException{
 
         this.parsers = parsers;
     }
 
-//    @PostConstruct
-    @Scheduled()
-    public void downloadData() throws SQLException, ClassNotFoundException {
+    @PostConstruct
     @Scheduled(cron = "* */10 * * * *")
-    public void downloadData(){
+    public void downloadData() throws SQLException, ClassNotFoundException {
 
         Iterator<Parser> parserIterator = parsers.iterator();
 
-        dao = new LostItemDAOimpl();
-        converter = new ItemConverter();
+        //dao = new LostItemDAOimpl();
+        //converter = new ItemConverter();
 
         dao.deleteListOfLostItem();
+
         while(parserIterator.hasNext()){
             Parser currentParser = parserIterator.next();
             currentParser.parseData();
@@ -63,10 +58,27 @@ public class Service {
     }
 
     @RequestMapping("/")
-    public int getAllItems(){
+    public String getAllItems() throws SQLException, ClassNotFoundException{
 
-        return items.size();
+        List<LostItem> daoItemList = dao.getListOfLostItem();
 
+        String finalMessage = "";
+
+        Iterator<LostItem> itemIterator = daoItemList.iterator();
+
+        finalMessage += "   City    |   Date    |   Name    |   Place of finding \n";
+
+        while(itemIterator.hasNext()){
+            LostItem current = itemIterator.next();
+
+            finalMessage += current.getCityOfFound() + " ";
+            finalMessage += current.getDateOfFinding() + " ";
+            finalMessage += current.getNameOfItem() + " ";
+            finalMessage +=  current.getPlaceOfFound() + " ";
+            finalMessage += "\n";
+        }
+
+        return finalMessage;
     }
 
 

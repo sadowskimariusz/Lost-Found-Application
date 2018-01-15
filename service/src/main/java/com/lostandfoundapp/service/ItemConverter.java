@@ -2,10 +2,12 @@ package com.lostandfoundapp.service;
 
 import com.lostandfoundapp.dao.lostitem.LostItem;
 import com.lostandfoundapp.parsers.item.Item;
+import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class ItemConverter {
 
     public List<LostItem> convertItemToLostItem(List<Item> itemList) {

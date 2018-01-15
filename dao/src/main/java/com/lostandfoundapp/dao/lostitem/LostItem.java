@@ -1,5 +1,8 @@
 package com.lostandfoundapp.dao.lostitem;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class LostItem {
 
     private String nameOfItem;
