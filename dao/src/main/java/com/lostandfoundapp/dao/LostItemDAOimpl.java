@@ -2,8 +2,10 @@ package com.lostandfoundapp.dao;
 
 import com.lostandfoundapp.dao.lostitem.LostItem;
 import com.lostandfoundapp.dao.lostitemoperations.LostItemDAO;
+import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
+import javax.sql.DataSource;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +21,8 @@ public class LostItemDAOimpl implements LostItemDAO {
     final String USER = "sa";
     final String PASS = "";
 
+    private DataSource DataSource;
+    private JdbcTemplate JdbcTemplate;
 
 
     @Override
@@ -74,14 +78,19 @@ public class LostItemDAOimpl implements LostItemDAO {
 
         //deleteListOfLostItem();
 
-        Connection dbConnection = null;
-        PreparedStatement preparedStatement = null;
+//        PreparedStatement preparedStatement = null;
+//        Connection dbConnection = null;
 
         String insertTableSQL = "INSERT INTO LOST_FOUND_APP.LOST_ITEM"
                 + "(NAME_OF_ITEM, CITY_OF_FOUND, PLACE_OF_FOUND, COMMENT, ITEM_SOURCE_ID, URL_ADDRESS_OF_SOURCE, DATE_OF_FOUND) VALUES "
                 + "(?,?,?,?,?,?,?)";
 
+
+        JdbcTemplate = new JdbcTemplate(DataSource);
+/*
+
         try {
+
             dbConnection = getDBConnection();
             preparedStatement = dbConnection.prepareStatement(insertTableSQL);
 
@@ -121,6 +130,7 @@ public class LostItemDAOimpl implements LostItemDAO {
                 }
             }
         }
+*/
     }
 
 
