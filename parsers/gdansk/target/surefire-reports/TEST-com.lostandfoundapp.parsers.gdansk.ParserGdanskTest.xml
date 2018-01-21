@@ -1,9 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<<<<<<< HEAD
-<testsuite tests="1" failures="0" name="com.lostandfoundapp.parsers.gdansk.ParserGdanskTest" time="0.179" errors="0" skipped="0">
-=======
-<testsuite tests="1" failures="0" name="com.lostandfoundapp.parsers.gdansk.ParserGdanskTest" time="0.292" errors="0" skipped="0">
->>>>>>> master
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.lostandfoundapp.parsers.gdansk.ParserGdanskTest" time="0.221" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="idea.version" value="2017.3"/>
@@ -27,8 +23,7 @@
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
     <property name="os.arch" value="amd64"/>
     <property name="java.io.tmpdir" value="C:\Users\ELMARI~1\AppData\Local\Temp\"/>
-    <property name="line.separator" value="
-"/>
+    <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="user.variant" value=""/>
     <property name="os.name" value="Windows 10"/>
@@ -65,9 +60,5 @@
     <property name="sun.desktop" value="windows"/>
     <property name="sun.cpu.isalist" value="amd64"/>
   </properties>
-<<<<<<< HEAD
-  <testcase classname="com.lostandfoundapp.parsers.gdansk.ParserGdanskTest" name="getParsedData" time="0.179"/>
-=======
-  <testcase classname="com.lostandfoundapp.parsers.gdansk.ParserGdanskTest" name="getParsedData" time="0.292"/>
->>>>>>> master
+  <testcase name="getParsedData" classname="com.lostandfoundapp.parsers.gdansk.ParserGdanskTest" time="0.221"/>
 </testsuite>

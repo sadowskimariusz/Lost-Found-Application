@@ -1,8 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.lostandfoundapp.parsers.gdansk.ParserGdanskTest
 -------------------------------------------------------------------------------
-<<<<<<< HEAD
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.265 sec
-=======
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.37 sec
->>>>>>> master
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.221 sec - in com.lostandfoundapp.parsers.gdansk.ParserGdanskTest
