@@ -34,8 +34,8 @@ public class Service {
 
         this.parsers = parsers;
     }
-    @PostConstruct
-    @Scheduled(cron = "*/60 * * * * *")
+    //@PostConstruct
+    @Scheduled(cron = "* */60 * * * *")
     public void downloadData() throws SQLException, ClassNotFoundException {
 
         Iterator<Parser> parserIterator = parsers.iterator();
@@ -52,29 +52,10 @@ public class Service {
 
     }
 
-    @RequestMapping("/przyklad")
+    @RequestMapping("/items")
     public List<LostItem> getAllItems() throws SQLException, ClassNotFoundException{
 
         List<LostItem> daoItemList = dao.getListOfLostItem();
-
-       /* String finalMessage = "";
-
-        Iterator<LostItem> itemIterator = daoItemList.iterator();
-
-        finalMessage += "   City    |   Date    |   Name    |   Place of finding \n";
-
-        while(itemIterator.hasNext()){
-
-            LostItem current = itemIterator.next();
-
-            finalMessage += current.getCityOfFound() + " ";
-            finalMessage += current.getDateOfFinding() + " ";
-            finalMessage += current.getNameOfItem() + " ";
-            finalMessage +=  current.getPlaceOfFound() + " ";
-            finalMessage += "\n";
-        }*/
-
-
 
         return daoItemList;
     }

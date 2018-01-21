@@ -58,7 +58,6 @@ public class ParserGdansk implements Parser{
         int informationRead=0;
 
         int year = Calendar.getInstance().get(Calendar.YEAR);
-        --year;
 
         Data temp = new Data();
 
