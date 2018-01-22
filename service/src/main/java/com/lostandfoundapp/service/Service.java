@@ -34,7 +34,7 @@ public class Service {
 
         this.parsers = parsers;
     }
-    //@PostConstruct
+    @PostConstruct
     @Scheduled(cron = "* */60 * * * *")
     public void downloadData() throws SQLException, ClassNotFoundException {
 
